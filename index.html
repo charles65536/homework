@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        $.ajax({
+            type:"get", //使用get方式
+            url: "config.json", //json文件相对于这个HTML的路径
+            dataType:"json",
+            success:function(config) {
+                //这个config就是json数据
+                //Main Part
+                let boxes = []
+                let container = document.getElementById("chkboxes")
+                for(let name of config.names){
+                    let box = document.createElement("input")
+                    box.setAttribute("type", "checkbox")
+                    container.appendChild(box);
+                    boxes.push(box)
+                }
+            },
+            error:function() {
+                alert("请求失败");
+            }
+        });
+
+    </script>
+    <div id="chkboxes"></div>
+</body>
+</html>
